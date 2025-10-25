@@ -1,0 +1,16 @@
+<div class="card shadow todo-card">
+  <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+    <h5 class="mb-0"><i class="fa-solid fa-list-check me-2"></i>To-Do List</h5>
+    <app-add-todo-item (taskAdded)="loadTasks()"></app-add-todo-item>
+  </div>
+
+  <div class="card-body">
+    <ul class="list-group" id="taskList">
+      @for(task of tasks; track i; let i = $index) {
+        <app-todo-item  [task_name]="task.task_name" [status]="task.status" [index]="i" (taskModified)="loadTasks()"/>
+      } @empty {
+        <p>Adicione uma tarefa para visualizar.</p>
+      }
+    </ul>
+  </div>
+</div>
